@@ -1,4 +1,4 @@
-import { ADD_GAME } from './action-types';
+import { ADD_GAME, SET_USER, DELETE_USER } from './action-types';
 
 export function addGame(game) {
   return {
@@ -7,4 +7,19 @@ export function addGame(game) {
       game
     }
   }
+}
+
+export function setUser(user) {
+  return {
+    type: SET_USER,
+    payload: {
+      user,
+    },
+  };
+}
+
+export function deleteUser() {
+  return {
+    type: DELETE_USER,
+  };
 }
