@@ -7,7 +7,7 @@ function Logout() {
   const history = useHistory();
   useEffect(() => {
     (async () => {
-      await fetch('http://localhost:3001/api/logout');
+      await fetch('/api/logout');
       dispatch({
         type: 'LOGOUT'
       });
