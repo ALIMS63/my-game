@@ -10,7 +10,7 @@ export const store = createStore(
     user: userReducer,
     game: gameReducer,
   }),
-  preloadedState,
+  JSON.parse(preloadedState),
   composeEnhsncers(applyMiddleware())
 );
 

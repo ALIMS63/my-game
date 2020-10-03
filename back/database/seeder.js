@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import './db.js';
-import Card from '../model/card.js';
+import Card from '../models/card.js';
 
 const entries = [
   {
@@ -25,16 +25,16 @@ const entries = [
         correct: "Вашингтон",
       },
       {
-        question: "Столица США?",
+        question: "Столица России?",
         price: 400,
-        variants: ["Лондон", "Вашингтон", "Париж"],
-        correct: "Вашингтон",
+        variants: ["Лондон", "Москва", "Париж"],
+        correct: "Москва",
       },
       {
-        question: "Столица США?",
+        question: "Столица Египта?",
         price: 500,
-        variants: ["Лондон", "Вашингтон", "Париж"],
-        correct: "Вашингтон",
+        variants: ["Лондон", "Каир", "Париж"],
+        correct: "Каир",
       },
     ],
   },
@@ -48,28 +48,28 @@ const entries = [
         correct: "Мехико",
       },
       {
-        question: "Столица Великобритании?",
+        question: "Столица Японии?",
         price: 200,
-        variants: ["Лондон", "Берлин", "Стамбул"],
-        correct: "Лондон",
+        variants: ["Лондон", "Токио", "Стамбул"],
+        correct: "Токио",
       },
       {
-        question: "Столица США?",
+        question: "Столица Португалии?",
         price: 300,
-        variants: ["Лондон", "Вашингтон", "Париж"],
-        correct: "Вашингтон",
+        variants: ["Лондон", "Лисабон", "Париж"],
+        correct: "Лисабон",
       },
       {
-        question: "Столица США?",
+        question: "Столица Испании?",
         price: 400,
-        variants: ["Лондон", "Вашингтон", "Париж"],
-        correct: "Вашингтон",
+        variants: ["Мадрид", "Вашингтон", "Париж"],
+        correct: "Мадрид",
       },
       {
-        question: "Столица США?",
+        question: "Столица Китая?",
         price: 500,
-        variants: ["Лондон", "Вашингтон", "Париж"],
-        correct: "Вашингтон",
+        variants: ["Лондон", "Вашингтон", "Пекин"],
+        correct: "Пекин",
       },
     ],
   },
