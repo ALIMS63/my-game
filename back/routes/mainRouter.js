@@ -13,10 +13,6 @@ function serializeUser(user) {
 }
 
 
-router.get('/', (req, res) => {
-  return res.send('Hello');
-});
-
 router.get('/api', async (req, res) => {
   let cards = await Card.find().exec();
   console.log(cards);
@@ -36,9 +32,7 @@ router.post('/api/login', async (req, res) => {
     res.status(401);
     res.json({ message: 'Указан неверный пароль' });
   }
-  console.log(serializeUser(user));
   req.session.user = serializeUser(user);
-  console.log(req.session.user);
   res.status(200);
   return res.json({
     id: user._id,

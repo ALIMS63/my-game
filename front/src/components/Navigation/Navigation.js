@@ -16,19 +16,16 @@ function Navigation() {
   return (
     <Paper square>
       <Tabs
-        value={value}
         indicatorColor="primary"
         textColor="primary"
-        onChange={handleChange}
       >
         {!isAuthenticated && <Link to="/login"><Tab label="Login" /></Link>}
         {!isAuthenticated && <Link to="/registration"><Tab label="Registration" /></Link>}
         {isAuthenticated && <Link to="/logout"><Tab label="Logout" /></Link>}
-        {isAuthenticated && <Link to="/personalPage"><Tab label="PersonalPage" /></Link>}
-        {isAuthenticated && <Link to="/gameCard"><Tab label="Game Card" /></Link>}
+        {isAuthenticated && <Link to="/personalPage"><Tab label="Personal Page" /></Link>}
+        {isAuthenticated && <Link to="/gameCard"><Tab label="Game" /></Link>}
 
-        {!isAuthenticated && <Link to="/"><Tab label="Active" /></Link>}
-
+        {/* {!isAuthenticated && <Link to="/"><Tab label="Active" /></Link>} */}
       </Tabs>
     </Paper>
   );

@@ -9,25 +9,31 @@ import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
 import PersonalRoute from '../PersonalRoute/PersonalRoute';
 import Logout from '../Logout/Logout';
+import { useSelector } from 'react-redux';
 
 function App() {
+
+  const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+
   return (
     <>
       <Router>
         <Navigation />
 
         <Switch>
-          <Route path="/" exact>
-            <WelcomePage />
-          </Route>
 
-          <Route path="/gameCard" exact>
+          <PersonalRoute path="/gameCard" exact>
             <TableCards />
-          </Route>
+          </PersonalRoute>
 
           <PersonalRoute path="/personalPage" exact>
             <PersonalPage />
           </PersonalRoute>
+
+          <Route path="/" exact>
+            {isAuthenticated && <PersonalPage />}
+            {!isAuthenticated && <Login />}
+          </Route>
 
           <Route path="/login" exact>
             <Login />

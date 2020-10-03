@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
   cont: {
     marginTop: '20px',
-  }
+  },
 });
 
 
@@ -80,7 +80,7 @@ function TableCards() {
 
                           <Button onClick={handleClose} color="primary">
                             Проверить
-          </Button>
+                        </Button>
                         </DialogActions>
                       </Dialog>
                     </>

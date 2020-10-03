@@ -77,7 +77,7 @@ function Login() {
       dispatch({
         type: 'AUTHENTICATED_SUCCESSFULLY'
       });
-      return history.push('/');
+      return history.push('/personalPage');
     } else {
       setFailed(finalResult.message);
     }
