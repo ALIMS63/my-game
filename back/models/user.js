@@ -25,6 +25,10 @@ const UserSchema = mongoose.Schema({
     type: String,
     default: new Date().toLocaleDateString(),
   },
+  score: {
+    type: Number,
+    default: 0,
+  }
 });
 
 export default mongoose.model('User', UserSchema);

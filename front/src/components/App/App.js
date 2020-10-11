@@ -10,6 +10,7 @@ import Registration from '../Registration/Registration';
 import PersonalRoute from '../PersonalRoute/PersonalRoute';
 import Logout from '../Logout/Logout';
 import { useSelector } from 'react-redux';
+import Question from '../Question/Question';
 
 function App() {
 
@@ -45,6 +46,10 @@ function App() {
 
           <Route path="/logout" exact>
             <Logout />
+          </Route>
+
+          <Route path="/question/:question" exact>
+            <Question/>
           </Route>
         </Switch>
       </Router>
