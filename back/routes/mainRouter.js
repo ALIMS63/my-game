@@ -15,7 +15,6 @@ function serializeUser(user) {
 
 router.get('/api', async (req, res) => {
   let cards = await Card.find().exec();
-  console.log(cards);
   return res.json(cards);
 });
 
@@ -38,6 +37,7 @@ router.post('/api/login', async (req, res) => {
     id: user._id,
     name: user.name,
     email: user.email,
+    score: user.score,
     createdAt: user.createdAt,
   });
 });
@@ -82,5 +82,13 @@ router.get('/api/logout', (req, res, next) => {
   }
 });
 
+router.post('/api/userScore', async (req, res) => {
+  console.log(req.body);
+  const user = await User.findById(req.body.id);
+  console.log(user);
+  user.score += req.body.price;
+  user.save();
+  res.json({ done: 'yes' });
+})
 
 export default router;

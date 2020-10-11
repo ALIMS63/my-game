@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableRow, Paper, Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { addGame } from '../../redux/actions.js';
+import Question from '../Question/Question';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   table: {
@@ -24,6 +26,9 @@ const useStyles = makeStyles({
 function TableCards() {
   const dispatch = useDispatch();
   const classes = useStyles();
+  // const [inp, setInp] = useState('');
+  let { user } = useSelector(state => state);
+  const history = useHistory();
 
   const [data, setData] = useState();
   useEffect(() => {
@@ -34,17 +39,34 @@ function TableCards() {
       dispatch(addGame(json));
     })();
   }, []);
-  // console.log(useSelector(state => state));
   console.log(data);
   const [open, setOpen] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  function handleClickOpen(question) {
+    console.log('click');
+    history.push(`/question/${question}`);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = async (el) => {
+  //   setOpen(false);
+  //   console.log(el.correct === inp);
+  //   if (el.correct === inp) {
+  //     console.log(user);
+  //     const response = await fetch("/api/userScore", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         id: user.id,
+  //         price: el.price
+  //       }),
+  //     });
+  //     const json = await response.json();
+  //     console.log(json);
+  //     setInp('');
+  //   }
+  // };
   return (
     <>
       <TableContainer className={classes.cont} component={Paper}>
@@ -58,31 +80,9 @@ function TableCards() {
                 {obj.questions.map(el => {
                   return (
                     <>
-                      <TableCell onClick={handleClickOpen} key={el.price} align="right" className={classes.cell}>{el.price}</TableCell>
-                      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                        <DialogTitle id="form-dialog-title">{obj.theme}{' '}{el.price}</DialogTitle>
-                        <DialogContent>
-                          <DialogContentText>
-                            {el.question}
-                          </DialogContentText>
-                          {el.variants.map(one => <div>{one}</div>)}
-                          {/* <div></div> */}
-                          <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Введите ответ"
-                            type="text"
-                            fullWidth
-                          />
-                        </DialogContent>
-                        <DialogActions>
-
-                          <Button onClick={handleClose} color="primary">
-                            Проверить
-                        </Button>
-                        </DialogActions>
-                      </Dialog>
+                      <TableCell key={el.price} onClick={() => handleClickOpen(el.question)} align="right" className={classes.cell}>
+                        {el.price}
+                      </TableCell>
                     </>
                   )
                 })}
@@ -92,6 +92,7 @@ function TableCards() {
           </TableBody>
         </Table>
       </TableContainer>
+      {/* <Question/> */}
     </>
   );
 }
