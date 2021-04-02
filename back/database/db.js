@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-export default mongoose.connect('mongodb://localhost/my-game', {
+module.exports = mongoose.connect('mongodb://localhost/my-game', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,

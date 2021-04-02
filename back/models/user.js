@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const UserSchema = mongoose.Schema({
   // Имя пользователя
@@ -28,7 +28,7 @@ const UserSchema = mongoose.Schema({
   score: {
     type: Number,
     default: 0,
-  }
+  },
 });
 
-export default mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

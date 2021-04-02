@@ -1,7 +1,7 @@
-import express from 'express';
-import bcrypt from 'bcrypt';
-import Card from '../models/card.js';
-import User from '../models/user.js';
+const express = require('express');
+const bcrypt = require('bcrypt');
+const Card = require('../models/card.js');
+const User = require('../models/user.js');
 
 const router = express.Router();
 
@@ -11,7 +11,6 @@ function serializeUser(user) {
     name: user.name,
   };
 }
-
 
 router.get('/api', async (req, res) => {
   let cards = await Card.find().exec();
@@ -44,12 +43,14 @@ router.post('/api/login', async (req, res) => {
 
 router.post('/api/registration', async (req, res) => {
   const { name, email, password } = req.body;
-  console.log(name, email, password);
   let user;
   const validUsername = await User.findOne({ name, email });
   if (validUsername) {
     res.status(401);
-    res.json({ message: 'Пожалуйста, попробуйте изменить введенные данные и повторите регистрацию' });
+    res.json({
+      message:
+        'Пожалуйста, попробуйте изменить введенные данные и повторите регистрацию',
+    });
   } else {
     const hashedPassword = await bcrypt.hash(password, 10);
     user = await User.create({
@@ -89,6 +90,6 @@ router.post('/api/userScore', async (req, res) => {
   user.score += req.body.price;
   user.save();
   res.json({ done: 'yes' });
-})
+});
 
-export default router;
+module.exports = router;

@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
-import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from '@material-ui/core';
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container,
+} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { setUser, deleteUser } from "../../redux/actions";
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { setUser, deleteUser } from '../../redux/actions';
 import Copyright from '../Copyright/Copyright';
-import { Link } from "react-router-dom";
-
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,23 +43,23 @@ const useStyles = makeStyles((theme) => ({
     width: '397px',
   },
   selectEmpty: {
-    marginTop: theme.spacing(2)
+    marginTop: theme.spacing(2),
   },
   failedBox: {
-    marginTop: "0px",
-    marginBottom: "20px",
-    width: "397px",
-    height: "20px",
+    marginTop: '0px',
+    marginBottom: '20px',
+    width: '397px',
+    height: '20px',
   },
   failed: {
     color: 'red',
     fontFamily: 'Arial',
-    fontWeight: "bold"
+    fontWeight: 'bold',
   },
   inp: {
     backgroundColor: 'white',
     borderRadius: '5px',
-    opacity: '0.8'
+    opacity: '0.8',
   },
 }));
 
@@ -69,12 +77,13 @@ function Registration() {
   const [failed, setFailed] = useState(null);
 
   async function handleSubmit(event) {
-    const { name, email, password } = inputs
+    const { name, email, password } = inputs;
+    console.log(inputs);
     event.preventDefault();
-    const response = await fetch("/api/registration", {
-      method: "POST",
+    const response = await fetch('/api/registration', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         name,
@@ -86,7 +95,7 @@ function Registration() {
     if (response.status === 200) {
       dispatch(setUser(finalResult));
       dispatch({
-        type: 'AUTHENTICATED_SUCCESSFULLY'
+        type: 'AUTHENTICATED_SUCCESSFULLY',
       });
       return history.push('/gameCard');
     } else {
@@ -98,7 +107,7 @@ function Registration() {
     setInputs({
       ...inputs,
       [name]: value,
-    })
+    });
   }
 
   const { name, email, password } = inputs;
@@ -115,7 +124,6 @@ function Registration() {
         </Typography>
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
           <Grid container spacing={2}>
-
             <Grid item xs={12}>
               <TextField
                 className={classes.inp}
@@ -160,20 +168,20 @@ function Registration() {
                 value={password}
               />
             </Grid>
-
           </Grid>
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
-          >
+            className={classes.submit}>
             Зарегистрироваться
           </Button>
-          {failed && <Box className={classes.failedBox}>
-            <h4 className={classes.failed}>{failed}</h4>
-          </Box>}
+          {failed && (
+            <Box className={classes.failedBox}>
+              <h4 className={classes.failed}>{failed}</h4>
+            </Box>
+          )}
           <Grid container justify="center">
             <Grid item>
               <Link to="/login" variant="body2">

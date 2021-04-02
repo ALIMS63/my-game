@@ -1,75 +1,75 @@
-import mongoose from 'mongoose';
-import './db.js';
-import Card from '../models/card.js';
+const mongoose = require('mongoose');
+require('./db.js');
+const Card = require('../models/card.js');
 
 const entries = [
   {
-    theme: "Столицы",
+    theme: 'Столицы',
     questions: [
       {
-        question: "Стола Канады?",
+        question: 'Стола Канады?',
         price: 100,
-        variants: ["Торонто", "Мельбурн", "Оттава"],
-        correct: "Оттава",
+        variants: ['Торонто', 'Мельбурн', 'Оттава'],
+        correct: 'Оттава',
       },
       {
-        question: "Столица Великобритании?",
+        question: 'Столица Великобритании?',
         price: 200,
-        variants: ["Прага", "Воронеж", "Лондон"],
-        correct: "Лондон",
+        variants: ['Прага', 'Воронеж', 'Лондон'],
+        correct: 'Лондон',
       },
       {
-        question: "Столица США?",
+        question: 'Столица США?',
         price: 300,
-        variants: ["Лондон", "Вашингтон", "Париж"],
-        correct: "Вашингтон",
+        variants: ['Лондон', 'Вашингтон', 'Париж'],
+        correct: 'Вашингтон',
       },
       {
-        question: "Столица России?",
+        question: 'Столица России?',
         price: 400,
-        variants: ["Лондон", "Москва", "Париж"],
-        correct: "Москва",
+        variants: ['Лондон', 'Москва', 'Париж'],
+        correct: 'Москва',
       },
       {
-        question: "Столица Египта?",
+        question: 'Столица Египта?',
         price: 500,
-        variants: ["Лондон", "Каир", "Париж"],
-        correct: "Каир",
+        variants: ['Лондон', 'Каир', 'Париж'],
+        correct: 'Каир',
       },
     ],
   },
   {
-    theme: "Столицы",
+    theme: 'Столицы',
     questions: [
       {
-        question: "Столица Мексики?",
+        question: 'Столица Мексики?',
         price: 100,
-        variants: ["Пекин", "Мехико", "Краснодар"],
-        correct: "Мехико",
+        variants: ['Пекин', 'Мехико', 'Краснодар'],
+        correct: 'Мехико',
       },
       {
-        question: "Столица Японии?",
+        question: 'Столица Японии?',
         price: 200,
-        variants: ["Лондон", "Токио", "Стамбул"],
-        correct: "Токио",
+        variants: ['Лондон', 'Токио', 'Стамбул'],
+        correct: 'Токио',
       },
       {
-        question: "Столица Португалии?",
+        question: 'Столица Португалии?',
         price: 300,
-        variants: ["Лондон", "Лисабон", "Париж"],
-        correct: "Лисабон",
+        variants: ['Лондон', 'Лисабон', 'Париж'],
+        correct: 'Лисабон',
       },
       {
-        question: "Столица Испании?",
+        question: 'Столица Испании?',
         price: 400,
-        variants: ["Мадрид", "Вашингтон", "Париж"],
-        correct: "Мадрид",
+        variants: ['Мадрид', 'Вашингтон', 'Париж'],
+        correct: 'Мадрид',
       },
       {
-        question: "Столица Китая?",
+        question: 'Столица Китая?',
         price: 500,
-        variants: ["Лондон", "Вашингтон", "Пекин"],
-        correct: "Пекин",
+        variants: ['Лондон', 'Вашингтон', 'Пекин'],
+        correct: 'Пекин',
       },
     ],
   },
@@ -79,4 +79,4 @@ const entries = [
   await mongoose.connection.dropDatabase();
   await Card.insertMany(entries);
   await mongoose.connection.close(); // or await mongoose.disconnect();
-})()
+})();

@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 const cardSchema = mongoose.Schema({
   theme: String,
   questions: Array,
 });
 
-export default mongoose.model("Card", cardSchema);
+module.exports = mongoose.model('Card', cardSchema);
