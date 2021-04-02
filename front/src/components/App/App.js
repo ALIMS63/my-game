@@ -1,20 +1,19 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import TableCards from '../TableCards/TableCards';
-import Navigation from '../Navigation/Navigation';
+import { Navigation } from '../Navigation';
 import PersonalPage from '../PersonalPage/PersonalPage';
 import WelcomePage from '../WelcomePage/WelcomePage';
 import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
-import PersonalRoute from '../PersonalRoute/PersonalRoute';
+import { PrivateRoute } from '../PrivateRoute';
 import Logout from '../Logout/Logout';
 import { useSelector } from 'react-redux';
 import Question from '../Question/Question';
 
 function App() {
-
-  const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   return (
     <>
@@ -22,35 +21,16 @@ function App() {
         <Navigation />
 
         <Switch>
-
-          <PersonalRoute path="/gameCard" exact>
-            <TableCards />
-          </PersonalRoute>
-
-          <PersonalRoute path="/personalPage" exact>
-            <PersonalPage />
-          </PersonalRoute>
-
+          <PrivateRoute path="/gameCard" component={TableCards} exact />
+          <PrivateRoute path="/personalPage" component={PersonalPage} exact />
           <Route path="/" exact>
             {isAuthenticated && <PersonalPage />}
             {!isAuthenticated && <Login />}
           </Route>
-
-          <Route path="/login" exact>
-            <Login />
-          </Route>
-
-          <Route path="/registration" exact>
-            <Registration />
-          </Route>
-
-          <Route path="/logout" exact>
-            <Logout />
-          </Route>
-
-          <Route path="/question/:question" exact>
-            <Question/>
-          </Route>
+          <Route path="/login" component={Login} exact />
+          <Route path="/registration" component={Registration} exact />
+          <Route path="/logout" component={Logout} exact />
+          <Route path="/question/:question" component={Question} exact />
         </Switch>
       </Router>
     </>
