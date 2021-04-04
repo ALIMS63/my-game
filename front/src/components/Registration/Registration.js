@@ -131,7 +131,6 @@ function Registration() {
                 name="name"
                 variant="outlined"
                 required
-                fullWidth
                 id="name"
                 label="Имя"
                 autoFocus
@@ -144,7 +143,6 @@ function Registration() {
                 className={classes.inp}
                 variant="outlined"
                 required
-                fullWidth
                 id="email"
                 label="Электронная почта"
                 name="email"
@@ -158,7 +156,6 @@ function Registration() {
                 className={classes.inp}
                 variant="outlined"
                 required
-                fullWidth
                 name="password"
                 label="Пароль"
                 type="password"
@@ -171,7 +168,6 @@ function Registration() {
           </Grid>
           <Button
             type="submit"
-            fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}>

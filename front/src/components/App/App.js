@@ -1,16 +1,15 @@
 import React from 'react';
-import './App.css';
+import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import TableCards from '../TableCards/TableCards';
+import Login from '../Login/Login';
+import Logout from '../Logout/Logout';
 import { Navigation } from '../Navigation';
 import PersonalPage from '../PersonalPage/PersonalPage';
-import WelcomePage from '../WelcomePage/WelcomePage';
-import Login from '../Login/Login';
-import Registration from '../Registration/Registration';
 import { PrivateRoute } from '../PrivateRoute';
-import Logout from '../Logout/Logout';
-import { useSelector } from 'react-redux';
 import Question from '../Question/Question';
+import Registration from '../Registration/Registration';
+import { TableCards } from '../TableCards';
+import './App.css';
 
 function App() {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
