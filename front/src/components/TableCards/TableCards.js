@@ -50,7 +50,7 @@ export const TableCards = () => {
   const [open, setOpen] = useState(false);
 
   function handleClickOpen(question) {
-    // history.push(`/question/${question}`)
+    history.push(`/question/${question}`)
     return <Dialog />;
   }
 
