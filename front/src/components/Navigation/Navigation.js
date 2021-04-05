@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { Paper, Tabs, Tab } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Paper, Tab, Tabs } from '@material-ui/core'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 export const Navigation = () => {
-  const [value, setValue] = useState(2);
+  const [value, setValue] = useState(2)
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated)
 
   return (
     <Paper square>
-      <Tabs indicatorColor="primary" textColor="primary">
+      <Tabs indicatorColor='primary' textColor='primary'>
         {!isAuthenticated && (
           <>
             <Link to="/login">
@@ -55,5 +55,5 @@ export const Navigation = () => {
         )} */}
       </Tabs>
     </Paper>
-  );
-};
+  )
+}

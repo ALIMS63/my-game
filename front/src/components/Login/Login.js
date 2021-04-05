@@ -109,7 +109,6 @@ function Login() {
             variant="outlined"
             margin="normal"
             required
-            fullWidth
             id="email"
             label="Электронная почта"
             name="email"
@@ -123,7 +122,6 @@ function Login() {
             variant="outlined"
             margin="normal"
             required
-            fullWidth
             name="password"
             label="Пароль"
             type="password"
@@ -134,7 +132,6 @@ function Login() {
           />
           <Button
             type="submit"
-            fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
