@@ -58,6 +58,7 @@ router.post('/api/registration', async (req, res) => {
       email,
       password: hashedPassword,
     });
+    console.log('router.post ~ user', user)
     req.session.user = serializeUser(user);
     res.status(200);
     return res.json({

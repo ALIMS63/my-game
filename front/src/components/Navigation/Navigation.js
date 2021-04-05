@@ -16,30 +16,43 @@ export const Navigation = () => {
     <Paper square>
       <Tabs indicatorColor="primary" textColor="primary">
         {!isAuthenticated && (
-          <Link to="/login">
-            <Tab label="Login" />
-          </Link>
+          <>
+            <Link to="/login">
+              <Tab label="Login" />
+            </Link>
+            <Link to="/registration">
+              <Tab label="Registration" />
+            </Link>
+          </>
         )}
-        {!isAuthenticated && (
+        {/* {!isAuthenticated && (
           <Link to="/registration">
             <Tab label="Registration" />
           </Link>
-        )}
-        {isAuthenticated && (
+        )} */}
+        {/* {isAuthenticated && (
           <Link to="/logout">
             <Tab label="Logout" />
           </Link>
-        )}
+        )} */}
         {isAuthenticated && (
-          <Link to="/personalPage">
-            <Tab label="Personal Page" />
-          </Link>
+          <>
+            <Link to="/logout">
+              <Tab label="Logout" />
+            </Link>
+            <Link to="/personalPage">
+              <Tab label="Personal Page" />
+            </Link>
+            <Link to="/gameCard">
+              <Tab label="Game" />
+            </Link>
+          </>
         )}
-        {isAuthenticated && (
+        {/* {isAuthenticated && (
           <Link to="/gameCard">
             <Tab label="Game" />
           </Link>
-        )}
+        )} */}
       </Tabs>
     </Paper>
   );
