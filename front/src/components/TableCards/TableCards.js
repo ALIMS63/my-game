@@ -4,7 +4,7 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  TableRow
+  TableRow,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import React, { useEffect, useState } from 'react';
@@ -36,6 +36,12 @@ export const TableCards = () => {
   // const [inp, setInp] = useState('');
   let { user } = useSelector((state) => state);
   const history = useHistory();
+  const [question, setQuestion] = useState({});
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const [data, setData] = useState();
   useEffect(() => {
@@ -46,12 +52,12 @@ export const TableCards = () => {
       dispatch(addGame(json));
     })();
   }, []);
-  console.log(data);
-  const [open, setOpen] = useState(false);
 
   function handleClickOpen(question) {
-    history.push(`/question/${question}`)
-    return <Dialog />;
+    setOpen(true);
+    setQuestion(question);
+    // history.push(`/question/${question}`);
+    // return <Dialog />;
   }
 
   // const handleClose = async (el) => {
@@ -76,7 +82,12 @@ export const TableCards = () => {
   // };
   return (
     <>
-      <Dialog />
+      <Dialog
+        open={open}
+        handleClickOpen={handleClickOpen}
+        handleClose={handleClose}
+        question={question}
+      />
       <TableContainer className={classes.cont} component={Paper}>
         <Table className={classes.table}>
           <TableBody>
@@ -91,15 +102,15 @@ export const TableCards = () => {
                   </TableCell>
                   {obj.questions.map((el) => {
                     return (
-                      <>
-                        <TableCell
-                          key={el.question}
-                          onClick={() => handleClickOpen(el.question)}
-                          align="right"
-                          className={classes.cell}>
-                          {el.price}
-                        </TableCell>
-                      </>
+                      <TableCell
+                        key={el.question}
+                        onClick={() =>
+                          handleClickOpen({ ...el, category: obj.theme })
+                        }
+                        align="right"
+                        className={classes.cell}>
+                        {el.price}
+                      </TableCell>
                     );
                   })}
                 </TableRow>

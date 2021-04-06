@@ -1,12 +1,25 @@
 import React, { useState } from 'react';
-import { Avatar, CssBaseline, Button, TextField, Grid, Box, Typography, Container } from '@material-ui/core';
+import {
+  Avatar,
+  CssBaseline,
+  Button,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container,
+} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { ThemeProvider, makeStyles, createMuiTheme, } from '@material-ui/core/styles';
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { setUser, deleteUser } from "../../redux/actions";
+import {
+  ThemeProvider,
+  makeStyles,
+  createMuiTheme,
+} from '@material-ui/core/styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { setUser, deleteUser } from '../../redux/actions';
 import Copyright from '../Copyright/Copyright';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,24 +41,24 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
   failedBox: {
-    marginTop: "0px",
-    marginBottom: "20px",
-    width: "397px",
-    height: "20px",
+    marginTop: '0px',
+    marginBottom: '20px',
+    width: '397px',
+    height: '20px',
   },
   failed: {
     color: 'red',
     fontFamily: 'Arial',
-    fontWeight: "bold"
+    fontWeight: 'bold',
   },
   inp: {
     backgroundColor: 'white',
     borderRadius: '5px',
-    opacity: '0.8'
-  }
+    opacity: '0.8',
+  },
 }));
 
-function Login() {
+export const Login = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -58,12 +71,12 @@ function Login() {
   const [failed, setFailed] = useState(null);
 
   async function handleSubmit(event) {
-    const { email, password } = inputs
+    const { email, password } = inputs;
     event.preventDefault();
-    const response = await fetch("/api/login", {
-      method: "POST",
+    const response = await fetch('/api/login', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email,
@@ -75,7 +88,7 @@ function Login() {
       console.log(finalResult);
       dispatch(setUser(finalResult));
       dispatch({
-        type: 'AUTHENTICATED_SUCCESSFULLY'
+        type: 'AUTHENTICATED_SUCCESSFULLY',
       });
       return history.push('/personalPage');
     } else {
@@ -87,7 +100,7 @@ function Login() {
     setInputs({
       ...inputs,
       [name]: value,
-    })
+    });
   }
 
   const { email, password } = inputs;
@@ -103,50 +116,34 @@ function Login() {
           Вход
         </Typography>
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
-
           <TextField
-            className={classes.inp}
             variant="outlined"
             margin="normal"
             required
-            id="email"
             label="Электронная почта"
             name="email"
-            autoComplete="email"
-            autoFocus
             onChange={handleChange}
             value={email}
           />
           <TextField
-            className={classes.inp}
             variant="outlined"
-            margin="normal"
             required
             name="password"
             label="Пароль"
             type="password"
-            id="password"
-            autoComplete="current-password"
             onChange={handleChange}
             value={password}
           />
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Войти
-          </Button>
-          {failed && <Box className={classes.failedBox}>
-            <h4 className={classes.failed}>{failed}</h4>
-          </Box>}
+          <Button type="submit" children="Войти" />
+          {failed && (
+            <Box className={classes.failedBox}>
+              <h4 className={classes.failed}>{failed}</h4>
+            </Box>
+          )}
           <Grid container justify="center">
             <Grid item>
               <Link to="/registration" variant="body2">
-                {/* {"Don't have an account? Register"} */}
-                {"Нет аккаунта? Зарегистрируйтесь."}
-
+                {'Нет аккаунта? Зарегистрируйтесь.'}
               </Link>
             </Grid>
           </Grid>
@@ -155,8 +152,6 @@ function Login() {
       <Box mt={8}>
         <Copyright />
       </Box>
-    </Container >
+    </Container>
   );
-}
-
-export default Login;
+};

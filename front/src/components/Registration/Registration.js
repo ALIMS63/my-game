@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Registration() {
+export const Registration = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -192,6 +192,4 @@ function Registration() {
       </Box>
     </Container>
   );
-}
-
-export default Registration;
+};
