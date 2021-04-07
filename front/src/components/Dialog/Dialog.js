@@ -10,9 +10,6 @@ export const Dialog = ({ open, handleClickOpen, handleClose, question }) => {
   console.log('Dialog ~ question', question);
   return (
     <>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
       <DialogUI open={open} onClose={handleClose}>
         <DialogTitle>
           {question.category} на {question.price}

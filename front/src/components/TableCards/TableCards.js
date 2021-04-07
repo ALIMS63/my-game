@@ -12,23 +12,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { addGame } from '../../redux/actions.js';
 import { Dialog } from '../Dialog';
+import {
+  QuestionCellUI,
+  ThemeCellUI,
+  TableTableContainerUI,
+  TableUI,
+} from './styled';
 
-const useStyles = makeStyles({
-  table: {
-    background: 'linear-gradient(90deg, #3d9aa7 10%, #0ec6ccf5 25%)',
-    minWidth: 650,
-  },
-  cell: {
-    border: '2px solid black',
-    width: '100px',
-    height: '100px',
-    textAlign: 'center',
-    cursor: 'pointer',
-  },
-  cont: {
-    marginTop: '20px',
-  },
-});
+const useStyles = makeStyles({});
 
 export const TableCards = () => {
   const dispatch = useDispatch();
@@ -57,29 +48,7 @@ export const TableCards = () => {
     setOpen(true);
     setQuestion(question);
     // history.push(`/question/${question}`);
-    // return <Dialog />;
   }
-
-  // const handleClose = async (el) => {
-  //   setOpen(false);
-  //   console.log(el.correct === inp);
-  //   if (el.correct === inp) {
-  //     console.log(user);
-  //     const response = await fetch("/api/userScore", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         id: user.id,
-  //         price: el.price
-  //       }),
-  //     });
-  //     const json = await response.json();
-  //     console.log(json);
-  //     setInp('');
-  //   }
-  // };
   return (
     <>
       <Dialog
@@ -88,37 +57,31 @@ export const TableCards = () => {
         handleClose={handleClose}
         question={question}
       />
-      <TableContainer className={classes.cont} component={Paper}>
-        <Table className={classes.table}>
+      <TableTableContainerUI component={Paper}>
+        <TableUI>
           <TableBody>
             {data &&
               data.map((obj, i) => (
                 <TableRow key={i}>
-                  <TableCell
-                    component="th"
-                    scope="row"
-                    className={classes.cell}>
+                  <ThemeCellUI component="th" scope="row">
                     {obj.theme}
-                  </TableCell>
+                  </ThemeCellUI>
                   {obj.questions.map((el) => {
                     return (
-                      <TableCell
+                      <QuestionCellUI
                         key={el.question}
                         onClick={() =>
                           handleClickOpen({ ...el, category: obj.theme })
-                        }
-                        align="right"
-                        className={classes.cell}>
+                        }>
                         {el.price}
-                      </TableCell>
+                      </QuestionCellUI>
                     );
                   })}
                 </TableRow>
               ))}
           </TableBody>
-        </Table>
-      </TableContainer>
-      {/* <Question/> */}
+        </TableUI>
+      </TableTableContainerUI>
     </>
   );
 };
